@@ -20,7 +20,7 @@ body {
     /* 1. Link your image here. 
        2. The 'linear-gradient' acts as a dark filter (50% opacity) so text pops. */
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)); 
-    background-image: url('/images/Brigde.jpg'); 
+    background-image: url('images/Bridge.jpg');    
     
     /* This ensures the photo covers the whole area without stretching */
     background-size: cover;      
