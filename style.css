@@ -13,49 +13,36 @@ body {
 }
 
 /* 1. Hero Section */
-/* 1. Hero Section */
 .hero {
     height: 100vh; 
     width: 100%;
-    
-    /* We combine the gradient AND the image in one single background property */
+    /* Use ./ to ensure GitHub finds the folder correctly */
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                url('images/Bridge.jpg') no-repeat center center;
-    
+                url('./images/Bridge.jpg') no-repeat center center;
     background-size: cover;      
     background-attachment: fixed; 
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: white;
+    padding: 0 20px;
 }
 
 .hero-content h1 {
-    font-size: 4.5rem;
+    font-size: clamp(2.5rem, 5vw, 4.5rem); /* Makes it responsive on mobile */
     font-weight: 800;
     line-height: 1.1;
     margin-bottom: 20px;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.3); /* Adds depth to text */
-}
-
-.hero-content p {
-    font-size: 1.4rem;
-    max-width: 600px;
-    margin: 0 auto;
-    opacity: 0.9;
-}
-
-.hero h1 {
-    font-size: 4rem;
-    margin-bottom: 1rem;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
     letter-spacing: -1px;
 }
 
-.hero p {
-    font-size: 1.25rem;
+.hero-content p {
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    max-width: 800px;
+    margin: 0 auto;
     opacity: 0.9;
 }
 
