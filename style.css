@@ -14,29 +14,11 @@ body {
 
 /* 1. Hero Section */
 .hero {
-    height: 100vh; /* Makes the header take up the full screen height */
-    width: 100%;
-    
-    /* 1. Link your image here. 
-       2. The 'linear-gradient' acts as a dark filter (50% opacity) so text pops. */
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)); 
-    background-image: url('images/Bridge.jpg');    
-    
-    /* This ensures the photo covers the whole area without stretching */
-    background-size: cover;      
-    background-position: center; 
-    background-repeat: no-repeat;
-    
-    /* Fixed creates a parallax effect where the image stays still while you scroll */
-    background-attachment: fixed; 
-
-    /* Centering the text */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
+    /* ... other properties ... */
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('images/Brigde.jpg') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 .hero-content h1 {
