@@ -13,12 +13,24 @@ body {
 }
 
 /* 1. Hero Section */
+/* 1. Hero Section */
 .hero {
-    /* ... other properties ... */
+    height: 100vh; 
+    width: 100%;
+    
+    /* We combine the gradient AND the image in one single background property */
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                 url('images/Bridge.jpg') no-repeat center center;
-    background-size: cover;
-    background-attachment: fixed;
+    
+    background-size: cover;      
+    background-attachment: fixed; 
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
 }
 
 .hero-content h1 {
