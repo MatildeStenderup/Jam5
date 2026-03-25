@@ -48,19 +48,57 @@ body {
 .story-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 100px 20px;
-    position: relative; /* Necessary for the line to anchor correctly */
+    padding: 40px 20px;
+    position: relative; /* This is the anchor for the line */
 }
 
-/* The Animated Vertical Line */
+/* THE LINE FIX */
 .line-container {
     position: absolute;
     left: 50%;
-    transform: translateX(-50%);
-    height: 100%;
+    top: 400px; /* Starts after the top textbox */
+    bottom: 0;
     width: 4px;
-    z-index: 0;
+    transform: translateX(-50%);
+    z-index: -1;
 }
+
+.svg-line {
+    width: 100%;
+    height: 100%;
+}
+
+.main-line {
+    stroke: #333; /* Darker color so it's visible */
+    stroke-width: 2;
+    stroke-dasharray: 10, 10;
+}
+
+/* STOP DOTS FIX */
+.stop {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 16px;
+    background-color: #333;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+/* Place dots where the charts are */
+.stop-1 { top: 15%; }
+.stop-2 { top: 50%; }
+.stop-3 { top: 85%; }
+
+@keyframes pulseStop {
+    0% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.3); background-color: #ff4757; }
+    100% { transform: translateX(-50%) scale(1); }
+}
+
+.stop { animation: pulseStop 2s infinite; }
 
 .svg-line {
     width: 4px;
