@@ -167,3 +167,31 @@ body {
         padding-bottom: 50px;
     }
 }
+/* 1. Flip the layout for every second step (even numbers) */
+@media (min-width: 769px) {
+    .step:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+
+    /* Add some padding to the text block when it's on the right 
+       so it doesn't touch the chart */
+    .step:nth-child(even) .text-block {
+        padding-left: 5%;
+        padding-right: 0;
+    }
+    
+    .step:nth-child(odd) .text-block {
+        padding-right: 5%;
+    }
+}
+
+/* 2. Ensure mobile stays stacked (Text on top, Chart on bottom) */
+@media (max-width: 768px) {
+    .step, .step:nth-child(even) {
+        flex-direction: column !important; /* Forces vertical stack on phones */
+    }
+    
+    .text-block {
+        padding: 20px 0 !important;
+    }
+}
