@@ -132,3 +132,38 @@ body {
     40% {transform: translateY(-10px);}
     60% {transform: translateY(-5px);}
 }
+
+/* 4. Responsive Design */
+@media (max-width: 768px) {
+    /* Stack the text and visual vertically */
+    .step {
+        flex-direction: column;
+        min-height: auto; /* Let content dictate height on mobile */
+        margin-bottom: 50px;
+    }
+
+    .text-block {
+        flex: 0 0 100%;
+        padding-top: 2rem; /* Remove the huge 20vh gap */
+        margin-bottom: 2rem;
+    }
+
+    .visual-block {
+        flex: 0 0 100%;
+        position: relative; /* Disable sticky on mobile so it doesn't overlap text */
+        top: 0;
+        height: 400px; /* Give it a fixed height so the chart is visible */
+        width: 100%;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem; /* Slightly smaller for small screens */
+    }
+
+    .outro {
+        padding: 0 10%; /* Give text more room on the sides */
+        height: auto;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+}
