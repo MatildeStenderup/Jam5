@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+this is my index: <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,69 +8,66 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const lineFill = document.getElementById('line-fill');
-            const container = document.querySelector('.story-container');
-            const stops = document.querySelectorAll('.stop');
-            
-            const alignStopsWithTitles = () => {
-                const steps = ['#step1', '#step2', '#step3'];
-                steps.forEach((stepId, index) => {
-                    const stepElement = document.querySelector(stepId);
-                    const title = stepElement.querySelector('h2');
-                    const stop = document.querySelector(`.stop-${index + 1}`);
-                    if (title && stop) {
-                        const containerRect = container.getBoundingClientRect();
-                        const titleRect = title.getBoundingClientRect();
-                        const relativeTop = titleRect.top - containerRect.top;
-                        stop.style.top = `${relativeTop + (title.offsetHeight / 2)}px`;
-                    }
-                });
-            };
+    document.addEventListener('DOMContentLoaded', () => {
+        const lineFill = document.getElementById('line-fill');
+        const container = document.querySelector('.story-container');
+        const stops = document.querySelectorAll('.stop');
+        
+        // 1. Function to align stops with H2 titles
+        const alignStopsWithTitles = () => {
+            const steps = ['#step1', '#step2', '#step3'];
+            
+            steps.forEach((stepId, index) => {
+                const stepElement = document.querySelector(stepId);
+                const title = stepElement.querySelector('h2');
+                const stop = document.querySelector(`.stop-${index + 1}`);
+                
+                if (title && stop) {
+                    // Calculate title position relative to the .story-container
+                    const containerRect = container.getBoundingClientRect();
+                    const titleRect = title.getBoundingClientRect();
+                    const relativeTop = titleRect.top - containerRect.top;
+                    
+                    // Move the dot to that exact pixel height
+                    stop.style.top = `${relativeTop + (title.offsetHeight / 2)}px`;
+                }
+            });
+        };
 
-            alignStopsWithTitles();
-            window.addEventListener('resize', alignStopsWithTitles);
+        // Run alignment on load and if window resizes
+        alignStopsWithTitles();
+        window.addEventListener('resize', alignStopsWithTitles);
 
-            window.addEventListener('scroll', () => {
-                const containerOffset = container.offsetTop;
-                const containerHeight = container.offsetHeight;
-                const scrollPosition = window.scrollY - containerOffset + (window.innerHeight / 2);
-                let scrollPercent = (scrollPosition / containerHeight) * 100;
-                scrollPercent = Math.max(0, Math.min(scrollPercent, 100));
-                
-                lineFill.style.height = scrollPercent + "%";
+        // 2. Scroll Logic for the Red Line Fill
+        window.addEventListener('scroll', () => {
+            const containerOffset = container.offsetTop;
+            const containerHeight = container.offsetHeight;
+            
+            // We calculate based on the middle of the viewport
+            const scrollPosition = window.scrollY - containerOffset + (window.innerHeight / 2);
+            
+            let scrollPercent = (scrollPosition / containerHeight) * 100;
+            
+            // Constrain between 0 and 100
+            scrollPercent = Math.max(0, Math.min(scrollPercent, 100));
+            
+            // Update the red line height
+            lineFill.style.height = scrollPercent + "%";
 
-                stops.forEach(stop => {
-                    const stopPercent = (stop.offsetTop / containerHeight) * 100;
-                    if (scrollPercent >= stopPercent) {
-                        stop.classList.add('active');
-                    } else {
-                        stop.classList.remove('active');
-                    }
-                });
-            });
-        });
-
-        // Toggle Fullscreen Image
-        function toggleImage() {
-            const img = document.getElementById('zoomable-img');
-            img.classList.toggle('fullscreen');
-            
-            if (img.classList.contains('fullscreen')) {
-                document.body.style.overflow = 'hidden'; // Stop scrolling
-            } else {
-                document.body.style.overflow = 'auto'; // Resume scrolling
-            }
-        }
-
-        // Close image if user clicks background
-        window.addEventListener('click', (e) => {
-            const img = document.getElementById('zoomable-img');
-            if (img.classList.contains('fullscreen') && e.target !== img) {
-                toggleImage();
-            }
-        });
-    </script>
+            // 3. Highlight stops as the red line passes them
+            stops.forEach(stop => {
+                // Get current stop position as a percentage of total container height
+                const stopPercent = (stop.offsetTop / containerHeight) * 100;
+                
+                if (scrollPercent >= stopPercent) {
+                    stop.classList.add('active');
+                } else {
+                    stop.classList.remove('active');
+                }
+            });
+        });
+    });
+</script>
 <body>
 
     <header class="hero">
@@ -90,7 +87,7 @@
     <div class="mid-page-text">
         <div class="inner-box">
             <h2>The Data Behind the Shift</h2>
-            <p>
+            <p><b>The Core Insight:</b></br>
 When we look at San Francisco over the last twenty years, we often talk about the skyscrapers and the tech companies that 
             redefined the skyline. But as we dug into two decades of police data—over 2.5 million individual records—we 
             found a different story. It isn't just a story of crime going up or down; it’s a story of crime moving. <br><br>
@@ -140,11 +137,6 @@ Has the city seen a shift from personal safety concerns to property-based crimes
         </div>
         <div class="visual-block">
             <div class="chart-placeholder">
-                <img src="images/crime_comparison_dashboard (3).png" 
-     alt="Crime Data Visualization" 
-     id="zoomable-img" 
-     onclick="toggleImage()" 
-     class="clickable-image">
                 <div id="chart1"></div>
             </div>
         </div>
@@ -186,3 +178,5 @@ Has the city seen a shift from personal safety concerns to property-based crimes
 
 </body>
 </html>
+
+i want to add a figure in tthe first frame. i have a folder "images" with a png. how to?
