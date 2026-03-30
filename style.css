@@ -1,7 +1,7 @@
 /* =========================================
    1. General Reset & Base Styles
    ========================================= */
-   * {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -12,7 +12,6 @@ body {
     line-height: 1.6;
     color: #ffffff;
     background-color: #333333;
-    /* Prevents horizontal scroll from the line animations */
     overflow-x: hidden;
 }
 
@@ -59,20 +58,18 @@ body {
     position: relative;
 }
 
-/* RIGHT-ALIGNED LINE (IN FRONT OF PICTURES) */
 .line-container {
     position: absolute;
-    right: 0px; /* Aligns to the right edge of content */
+    right: 0px;
     left: auto;
     top: 0;
     bottom: 0;
     width: 4px;
     transform: none;
-    z-index: 100; /* High z-index to stay on top of charts */
-    pointer-events: none; /* Allows user to click "through" the line to charts */
+    z-index: 100;
+    pointer-events: none;
 }
 
-/* The background dashed track */
 .line-track {
     position: absolute;
     top: 0;
@@ -88,21 +85,19 @@ body {
     right: 1px;
 }
 
-/* The actual "Following" progress line */
 .line-fill {
     position: absolute;
     top: 0;
     right: 0;
     width: 4px;
-    height: 0%; /* Controlled by JavaScript scroll percentage */
+    height: 0%;
     background: #FF0000;
     transition: height 0.1s ease-out;
 }
 
-/* The Tracker Stops (Dots) */
 .stop {
     position: absolute;
-    right: -6px; /* Centered over the line */
+    right: -6px;
     width: 16px;
     height: 16px;
     background-color: #333;
@@ -112,22 +107,9 @@ body {
     transition: all 0.3s ease;
 }
 
-/* Update these in your style.css */
-
-.stop-1 {
-    /* This aligns with the first section title */
-    top: calc(18% + 25vh);
-}
-
-.stop-2 {
-    /* This aligns with the second section title */
-    top: calc(47% + 25vh);
-}
-
-.stop-3 {
-    /* This aligns with the third section title */
-    top: calc(77% + 25vh);
-}
+.stop-1 { top: calc(18% + 25vh); }
+.stop-2 { top: calc(47% + 25vh); }
+.stop-3 { top: calc(77% + 25vh); }
 
 .stop.active {
     border-color: #ddd;
@@ -144,10 +126,9 @@ body {
     align-items: flex-start;
     min-height: 100vh;
     position: relative;
-    z-index: 1; /* Lower than the line */
+    z-index: 1;
 }
 
-/* Zig-Zag: Chart on left, Text on right for every 2nd section */
 @media (min-width: 769px) {
     .step:nth-of-type(even) {
         flex-direction: row-reverse;
@@ -164,7 +145,6 @@ body {
     margin-bottom: 1.5rem;
 }
 
-/* Sticky Visuals */
 .visual-block {
     flex: 0 0 55%;
     position: sticky;
@@ -173,18 +153,43 @@ body {
     background: white;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    padding: 2rem;
+    /* Removed padding to let image fill space */
+    padding: 0; 
     display: flex;
-    flex-direction: column;
+    overflow: hidden;
 }
 
 .chart-placeholder {
     flex-grow: 1;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 2px dashed #ddd;
+    height: 100%;
+    width: 100%;
+}
+
+/* IMAGE STYLING */
+.expandable-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ensures the whole chart is visible */
+    cursor: zoom-in;
+    transition: all 0.3s ease-in-out;
+    background: white;
+}
+
+/* FULLSCREEN STATE */
+.expandable-image.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;
+    z-index: 9999;
+    cursor: zoom-out;
+    background: rgba(0, 0, 0, 0.95);
+    padding: 20px;
 }
 
 /* =========================================
@@ -241,8 +246,8 @@ body {
 }
 
 @keyframes pulseStop {
-    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(51, 51, 51, 0.4); }
-    70% { transform: scale(1.2); box-shadow: 0 0 0 10px rgba(51, 51, 51, 0); }
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4); }
+    70% { transform: scale(1.2); box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
     100% { transform: scale(1); }
 }
 
@@ -251,7 +256,7 @@ body {
    ========================================= */
 @media (max-width: 768px) {
     .line-container {
-        display: none; /* Line is usually too messy on small screens */
+        display: none;
     }
 
     .step {
@@ -268,7 +273,7 @@ body {
 
     .visual-block {
         flex: 0 0 100%;
-        position: relative; /* Removes 'sticky' on mobile */
+        position: relative;
         top: 0;
         height: 400px;
         width: 100%;
@@ -281,4 +286,4 @@ body {
     .inner-box h2 {
         font-size: 1.6rem;
     }
-  }
+}
