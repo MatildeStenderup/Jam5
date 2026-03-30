@@ -283,43 +283,10 @@ body {
     }
    /* Normal state */
 }
-/* 1. This controls the image when it is sitting in the layout */
-.clickable-image {
-    width: 100%;           /* Fills the container width */
-    max-width: 500px;      /* Prevents it from getting TOO big on desktop */
-    height: auto;
-    cursor: zoom-in;
-    transition: transform 0.2s ease;
-    border-radius: 8px;    /* Optional: matches your design */
-    display: block;
-    margin: 0 auto;
-}
-
-/* 2. This controls the image when you click it (Fullscreen) */
-.clickable-image.fullscreen {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Centers it perfectly */
-    width: 90vw;                      /* 90% of screen width */
-    height: auto;
-    max-height: 90vh;
-    object-fit: contain;
-    z-index: 9999;                    /* Sits on top of everything */
-    cursor: zoom-out;
-    box-shadow: 0 0 50px rgba(0,0,0,0.5);
-}
-
-/* 3. Adds a dark background overlay when the image is fullscreen */
-.fullscreen-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
-    z-index: 9998;
+#step1 .visual-block {
+    background-image: url('images/your-filename.png');
+    background-size: cover;
+    background-position: center;
 }
 
 .fullscreen-overlay.active {
