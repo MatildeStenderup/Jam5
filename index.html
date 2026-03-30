@@ -67,6 +67,25 @@
             });
         });
     });
+    function toggleImage() {
+    const img = document.getElementById('zoomable-img');
+    img.classList.toggle('fullscreen');
+    
+    // Optional: Prevent scrolling when image is full screen
+    if (img.classList.contains('fullscreen')) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Close image if user clicks anywhere else
+window.addEventListener('click', (e) => {
+    const img = document.getElementById('zoomable-img');
+    if (img.classList.contains('fullscreen') && e.target !== img) {
+        toggleImage();
+    }
+});
 </script>
 <body>
 
