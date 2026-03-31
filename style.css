@@ -242,7 +242,7 @@ body {
 }
 .expandable-image {
     cursor: zoom-in;
-   transition: all 0.3s ease;  /* Smooth transition */
+   /*transition: all 0.3s ease;  Smooth transition */
 }
 
 .expandable-image.fullscreen {
@@ -255,4 +255,5 @@ body {
     z-index: 9999;
     cursor: zoom-out;
     box-shadow: 0 5px 30px rgba(0,0,0,0.5);
+   transition: none !important;
 }
