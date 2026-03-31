@@ -64,26 +64,35 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
-    // ========================
+// ========================
     // IMAGE ZOOM FEATURE
     // ========================
     const images = document.querySelectorAll('.expandable-image');
 
     images.forEach(img => {
         img.addEventListener('click', (e) => {
-            e.stopPropagation();
-            img.classList.add('fullscreen');
+            e.stopPropagation(); // Stop click from reaching the document
+            
+            // If the clicked image is already big, shrink it
+            if (img.classList.contains('fullscreen')) {
+                img.classList.remove('fullscreen');
+            } else {
+                // Otherwise, shrink any OTHER images that might be open first...
+                document.querySelectorAll('.expandable-image.fullscreen').forEach(openImg => {
+                    openImg.classList.remove('fullscreen');
+                });
+                // ...and expand this one!
+                img.classList.add('fullscreen');
+            }
         });
     });
 
+    // Close the image when clicking anywhere on the background
     document.addEventListener('click', () => {
         document.querySelectorAll('.expandable-image.fullscreen').forEach(img => {
             img.classList.remove('fullscreen');
         });
     });
-
-});
 </script>
 
 <body>
