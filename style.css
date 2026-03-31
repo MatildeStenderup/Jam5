@@ -240,3 +240,6 @@ body {
     .text-block { flex: 0 0 100%; padding-top: 20px; }
     .visual-block { flex: 0 0 100%; position: relative; top: 0; height: 350px; width: 100%; }
 }
+.expandable-image {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
