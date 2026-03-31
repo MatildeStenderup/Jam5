@@ -1,99 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>"The Shifting Border: Did San Francisco Fix Crime or Just Move It?"</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 
 </head>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-
-    const lineFill = document.getElementById('line-fill');
-    const container = document.querySelector('.story-container');
-    const stops = document.querySelectorAll('.stop');
-
-    // ========================
-    // ALIGN STOPS
-    // ========================
-    const alignStopsWithTitles = () => {
-        const steps = ['#step1', '#step2', '#step3'];
-
-        steps.forEach((stepId, index) => {
-            const stepElement = document.querySelector(stepId);
-            const title = stepElement.querySelector('h2');
-            const stop = document.querySelector(`.stop-${index + 1}`);
-
-            if (title && stop) {
-                const containerRect = container.getBoundingClientRect();
-                const titleRect = title.getBoundingClientRect();
-                const relativeTop = titleRect.top - containerRect.top;
-
-                stop.style.top = `${relativeTop + (title.offsetHeight / 2)}px`;
-            }
-        });
-    };
-
-    alignStopsWithTitles();
-    window.addEventListener('resize', alignStopsWithTitles);
-
-    // ========================
-    // SCROLL LINE LOGIC
-    // ========================
-    window.addEventListener('scroll', () => {
-        const containerOffset = container.offsetTop;
-        const containerHeight = container.offsetHeight;
-
-        const scrollPosition = window.scrollY - containerOffset + (window.innerHeight / 2);
-
-        let scrollPercent = (scrollPosition / containerHeight) * 100;
-        scrollPercent = Math.max(0, Math.min(scrollPercent, 100));
-
-        lineFill.style.height = scrollPercent + "%";
-
-        stops.forEach(stop => {
-            const stopPercent = (stop.offsetTop / containerHeight) * 100;
-
-            if (scrollPercent >= stopPercent) {
-                stop.classList.add('active');
-            } else {
-                stop.classList.remove('active');
-            }
-        });
-    });
-// ========================
-    // IMAGE ZOOM FEATURE
-    // ========================
-    const images = document.querySelectorAll('.expandable-image');
-
-    images.forEach(img => {
-        img.addEventListener('click', (e) => {
-            e.stopPropagation(); // Stop click from reaching the document
-            
-            // If the clicked image is already big, shrink it
-            if (img.classList.contains('fullscreen')) {
-                img.classList.remove('fullscreen');
-            } else {
-                // Otherwise, shrink any OTHER images that might be open first...
-                document.querySelectorAll('.expandable-image.fullscreen').forEach(openImg => {
-                    openImg.classList.remove('fullscreen');
-                });
-                // ...and expand this one!
-                img.classList.add('fullscreen');
-            }
-        });
-    });
-
-    // Close the image when clicking anywhere on the background
-    document.addEventListener('click', () => {
-        document.querySelectorAll('.expandable-image.fullscreen').forEach(img => {
-            img.classList.remove('fullscreen');
-        });
-    });
-</script>
 
 <body>
     <header class="hero">
@@ -201,7 +115,101 @@ Has the city seen a shift from personal safety concerns to property-based crimes
             <p class="source">Data source: San Francisco Police Department Crime Database<br>Image source: https://unsplash.com/<br>Last updated: March 2026</p>
         </div>
     </footer>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
 
+    const lineFill = document.getElementById('line-fill');
+    const container = document.querySelector('.story-container');
+    const stops = document.querySelectorAll('.stop');
+
+    // ========================
+    // ALIGN STOPS
+    // ========================
+    const alignStopsWithTitles = () => {
+        const steps = ['#step1', '#step2', '#step3'];
+
+        steps.forEach((stepId, index) => {
+            const stepElement = document.querySelector(stepId);
+            const stop = document.querySelector(`.stop-${index + 1}`);
+
+            // Safety check: only proceed if these elements actually exist!
+            if (stepElement && stop) {
+                const title = stepElement.querySelector('h2');
+                if (!title) return;
+
+                const containerRect = container.getBoundingClientRect();
+                const titleRect = title.getBoundingClientRect();
+                const relativeTop = titleRect.top - containerRect.top;
+
+                stop.style.top = `${relativeTop + (title.offsetHeight / 2)}px`;
+            }
+        });
+    };
+
+    // Only run alignment if container exists
+    if (container) {
+        alignStopsWithTitles();
+        window.addEventListener('resize', alignStopsWithTitles);
+    }
+
+    // ========================
+    // SCROLL LINE LOGIC
+    // ========================
+    window.addEventListener('scroll', () => {
+        // Safety check to prevent crashes
+        if (!container || !lineFill) return;
+
+        const containerOffset = container.offsetTop;
+        const containerHeight = container.offsetHeight;
+        const scrollPosition = window.scrollY - containerOffset + (window.innerHeight / 2);
+
+        let scrollPercent = (scrollPosition / containerHeight) * 100;
+        scrollPercent = Math.max(0, Math.min(scrollPercent, 100));
+
+        lineFill.style.height = scrollPercent + "%";
+
+        stops.forEach(stop => {
+            const stopPercent = (stop.offsetTop / containerHeight) * 100;
+
+            if (scrollPercent >= stopPercent) {
+                stop.classList.add('active');
+            } else {
+                stop.classList.remove('active');
+            }
+        });
+    });
+
+    // ========================
+    // IMAGE ZOOM FEATURE
+    // ========================
+    const images = document.querySelectorAll('.expandable-image');
+
+    images.forEach(img => {
+        img.addEventListener('click', (e) => {
+            e.stopPropagation(); // Stop click from reaching the document
+            
+            if (img.classList.contains('fullscreen')) {
+                img.classList.remove('fullscreen');
+            } else {
+                // Shrink any OTHER images that might be open first...
+                document.querySelectorAll('.expandable-image.fullscreen').forEach(openImg => {
+                    openImg.classList.remove('fullscreen');
+                });
+                // ...and expand this one!
+                img.classList.add('fullscreen');
+            }
+        });
+    });
+
+    // Close the image when clicking anywhere on the background
+    document.addEventListener('click', () => {
+        document.querySelectorAll('.expandable-image.fullscreen').forEach(img => {
+            img.classList.remove('fullscreen');
+        });
+    });
+
+});
+</script>
 </body>
 
 </html>
