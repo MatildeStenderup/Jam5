@@ -68,21 +68,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // ========================
     // IMAGE ZOOM FEATURE
     // ========================
-    const images = document.querySelectorAll('.expandable-image');
+    // ========================
+// IMAGE ZOOM FEATURE (FIXED)
+// ========================
+const images = document.querySelectorAll('.expandable-image');
 
-    images.forEach(img => {
-        img.addEventListener('click', (e) => {
-            e.stopPropagation();
-            img.classList.add('fullscreen');
-        });
+images.forEach(img => {
+    img.addEventListener('click', (e) => {
+        e.stopPropagation();
+
+        // TOGGLE instead of just adding
+        img.classList.toggle('fullscreen');
     });
+});
 
-    document.addEventListener('click', () => {
-        document.querySelectorAll('.expandable-image.fullscreen').forEach(img => {
+// Click outside closes it
+document.addEventListener('click', (e) => {
+    document.querySelectorAll('.expandable-image.fullscreen').forEach(img => {
+        // Only close if clicking NOT on the image
+        if (!img.contains(e.target)) {
             img.classList.remove('fullscreen');
-        });
+        }
     });
-
 });
 </script>
 
