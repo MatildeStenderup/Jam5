@@ -261,20 +261,26 @@ body {
 
 
 
-/* Justeret Force Scale - får kortet til at fylde mere */
+/* Manuel styring af x og y for perfekt placering */
 .chart-placeholder iframe {
-    width: 125% !important;  /* Lidt mindre bredde internt end før */
-    height: 125% !important; /* Lidt mindre højde internt end før */
-    transform: scale(0.8);   /* Zoomer kun ned til 80% i stedet for 66% */
-    transform-origin: center center; /* Centrerer zoomet så det fylder boksen ud */
+    width: 125% !important; 
+    height: 125% !important; 
     border: none;
     display: block;
-    margin: 0 auto;         /* Centrerer rammen horisontalt */
+    
+    /* Vi bruger transform til både at styre placering (x, y) og zoom (scale) */
+    /* 1. tal i translate er X (højre/venstre), 2. tal er Y (op/ned) */
+    transform: translate(0px, -40px) scale(0.8); 
+    
+    /* Vi låser origin til toppen, så vores translate-tal er nemmere at styre */
+    transform-origin: top center; 
 }
 
 .chart-placeholder {
-    overflow: hidden; 
-    display: flex;          /* Vi bruger flex igen til at centrere det skalerede kort */
+    overflow: hidden;
+    display: flex;
     justify-content: center;
     align-items: center;
+    background: #fff;
+    height: 100%; /* Sørg for at den fylder hele den hvide boks */
 }
