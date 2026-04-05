@@ -271,7 +271,7 @@ body {
     /* translate(X, Y) - her skal du skrue på tallene */
     /* X: -55% skubber kortet lidt mod venstre, så søjlen i højre side kommer til syne */
     /* Y: -60% rykker kortet opad, så figurteksten i bunden bliver fri */
-    transform: translate(-20%, -30%) scale(0.75); 
+    transform: translate(20%, 30%) scale(0.75); 
     
     top: 50%;
     left: 50%;
