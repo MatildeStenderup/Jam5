@@ -262,28 +262,28 @@ body {
 
 
 .chart-placeholder iframe {
-    /* Vi sætter den til at være lidt bredere internt for at få legenden med */
-    width: 115% !important;  
-    height: 110% !important; 
+    /* Vi dropper de store procenter og holder den på 100% */
+    width: 100% !important;
+    height: 100% !important;
     border: none;
     display: block;
     
     position: absolute;
-    /* Vi løfter den højere op (fra 42% til 35%) for at redde din figurtekst */
-    top: 35%; 
+    /* Vi centrerer den præcis i midten */
+    top: 50%;
     left: 50%;
-    
-    /* Vi skalerer en lille smule mere ned for at få hele søjlen med i siden */
-    transform: translate(-50%, -50%) scale(0.72); 
+    /* Vi bruger en scale, der er tættere på 1, så vi ikke 'mister' bunden */
+    transform: translate(-50%, -50%) scale(0.9);
     
     transform-origin: center center;
 }
 
 .chart-placeholder {
     width: 100%;
-    height: 100%;
+    /* Vi tvinger beholderen til at have samme højde som visual-block */
+    height: 100%; 
     position: relative;
-    overflow: hidden;
+    /* Vi fjerner overflow: hidden midlertidigt for at se, hvor kortet lander */
+    overflow: hidden; 
     background: #fff;
-    padding: 0 !important;
 }
