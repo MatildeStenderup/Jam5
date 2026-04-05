@@ -278,7 +278,7 @@ body {
     transform-origin: center center;
 }
 
-.chart-placeholder {
+.chart-placeholder iframe {
     width: 130%;
     height: 130%;
     position: relative;
