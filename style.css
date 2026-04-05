@@ -267,17 +267,22 @@ body {
     display: block;
 }
 
-/* FORCE SCALE HACK */
+
+/* Adjust force scale - so the map fill more */
 .chart-placeholder iframe {
-    width: 150% !important;  /* Gør det interaktive indhold bredere internt */
-    height: 150% !important; /* Gør det interaktive indhold højere internt */
-    transform: scale(0.66);  /* Zoomer det hele ned til 66% størrelse */
-    transform-origin: 0 0;   /* Bevarer placeringen i øverste venstre hjørne */
+    width: 125% !important;
+    height: 125% !important;
+    transform: scale(0.8);
+    transform-origin: center center;
     border: none;
     display: block;
+    margin: 0 auto;
 }
 
 .chart-placeholder {
-    overflow: hidden; /* Sikrer at det overskydende "zoom" ikke ses */
-    display: block;   /* Fjern flex her, da det driller med scale */
+    overflow: hidden; 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    background: #fff;
 }
