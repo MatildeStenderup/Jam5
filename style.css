@@ -285,3 +285,19 @@ body {
    overflow: hidden; /* Holder kanterne skarpe, men vi har nu skubbet indholdet 'ind' i rammen */
    background: #fff;
 }
+/* FULLSCREEN STATE FOR IFRAME */
+.chart-placeholder iframe.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw !important;  /* Fylder hele bredden */
+    height: 100vh !important; /* Fylder hele højden */
+    z-index: 9999;
+    cursor: zoom-out;
+    background: #fff; /* Hvid baggrund så kortet er læsbart */
+    
+    /* VIGTIGT: Vi fjerner vores hacks, når den er fullscreen */
+    transform: none !important; 
+    padding: 20px;
+    object-fit: contain;
+}
