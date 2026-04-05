@@ -274,7 +274,7 @@ body {
 
 .chart-placeholder {
     overflow: hidden; 
-    display: block;          /* Vi bruger flex igen til at centrere det skalerede kort */
+    display: flex;          /* Vi bruger flex igen til at centrere det skalerede kort */
     justify-content: center;
     align-items: center;
 }
