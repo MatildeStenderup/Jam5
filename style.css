@@ -259,27 +259,24 @@ body {
    transition: none !important;
 }
 
-/*Makes sure that the iframe fits the chart */
-.chart-placeholder iframe {
-    width: 100%;
-    height: 100%; /* Makes the mmap using the 100% of the 60 vh */
-    border: none;
-    display: block;
-}
 
 
 .chart-placeholder iframe {
-    width: 110% !important;  
+    /* Vi sætter den til at være lidt bredere internt for at få legenden med */
+    width: 115% !important;  
     height: 110% !important; 
     border: none;
     display: block;
     
     position: absolute;
-    top: 42%; 
+    /* Vi løfter den højere op (fra 42% til 35%) for at redde din figurtekst */
+    top: 35%; 
     left: 50%;
-    transform: translate(-50%, -50%) scale(0.8); 
     
-    transform-origin: center;
+    /* Vi skalerer en lille smule mere ned for at få hele søjlen med i siden */
+    transform: translate(-50%, -50%) scale(0.72); 
+    
+    transform-origin: center center;
 }
 
 .chart-placeholder {
