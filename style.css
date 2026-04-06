@@ -284,4 +284,18 @@ body {
    background: #fff;
 }
 
+/* This rule in your CSS currently targets ALL iframes inside chart-placeholders */
+.chart-placeholder iframe {
+    width: 160% !important;  
+    height: 160% !important; 
+    border: none;
+    display: block;
+    
+    position: absolute;
+    /* This centers the oversized iframe and scales it down */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.6); /* Adjust scale as needed */
+    transform-origin: center center;
+}
 
