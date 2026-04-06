@@ -311,7 +311,7 @@ body {
 .expandable-image, 
 .expandable-iframe {
     width: 100% !important;
-    /*height: 100% !important;*/
+    height: 100% !important;
     display: block;
     object-fit: contain;
     border: none;
@@ -337,7 +337,7 @@ body {
     top: 0 !important;
     left: 0 !important;
     width: 100vw !important;
-    height: 100vh !important;
+    /*height: 100vh !important;*/
     transform: none !important; /* Reset transform for true fullscreen */
     z-index: 9999;
     background: white;
