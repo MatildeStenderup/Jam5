@@ -332,6 +332,8 @@ body {
     padding: 20px;
     cursor: zoom-out;
     object-fit: contain;
+   box-shadow: 0 10px 50px rgba(0,0,0,0.8);
+    border-radius: 12px;
 }
 
 /* Hide shield when zoomed so user can interact with the map */
