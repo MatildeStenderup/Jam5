@@ -37,7 +37,19 @@ body {
    2. Hero Section
 
    ========================================= */
+/* Specifically target the visual block in Step 2 */
+#step2 .visual-block {
+    flex: 0 0 45%; /* Reduced from 55% to 45% */
+    height: 45vh;   /* Reduced from 60vh to 45vh */
+    align-self: center; /* Keeps it vertically centered if the text is longer */
+    margin: 0 auto;    /* Keeps it tidy */
+}
 
+/* Optional: If you want the iframe itself to have some internal padding */
+#step2 .chart-placeholder {
+    padding: 15px; 
+    background: #f9f9f9; /* Slight contrast to show the smaller size */
+}
 .hero {
 
     height: 100vh;
