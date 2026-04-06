@@ -289,7 +289,7 @@ body {
     object-fit: contain;
     border: none;
     transition: all 0.3s ease;
-   cursor: zoom-in;
+    cursor: zoom-in;
 }
 
 /* THE CLICK SHIELD: Sits on top of iframe to catch clicks */
