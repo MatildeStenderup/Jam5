@@ -258,3 +258,30 @@ body {
     box-shadow: 0 5px 30px rgba(0,0,0,0.5);
    transition: none !important;
 }
+
+
+
+.chart-placeholder iframe {
+    width: 160% !important;  
+    height: 160% !important; 
+    border: none;
+    display: block;
+    
+    position: absolute;
+    /* translate(X, Y) */
+    transform: translate(-41.5%, -49%) scale(0.82); 
+    
+    top: 50%;
+    left: 50%;
+    transform-origin: center center;
+}
+
+.chart-placeholder {
+   width: 100%;
+   height: 100%; 
+   position: relative;
+   overflow: hidden; 
+   background: #fff;
+}
+
+
