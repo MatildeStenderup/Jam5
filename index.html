@@ -202,23 +202,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================================
     // 3. UNIFIED ZOOM (IMAGES & IFRAMES)
     // =========================================
-    
-    // This looks for images OR the click-shield over your iframe
-    const interactiveElements = document.querySelectorAll('.expandable-image, .click-shield');
+    // We target images, the shield, AND the iframe itself for zooming out
+    const interactiveElements = document.querySelectorAll('.expandable-image, .click-shield, .expandable-iframe');
 
     interactiveElements.forEach(el => {
         el.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent document click from firing
+            e.stopPropagation();
             
-            // If we clicked the shield, the target is the iframe (the previous element)
-            // If we clicked an image, the target is the image itself
-            let target = el.classList.contains('click-shield') ? el.previousElementSibling : el;
+            let target;
+            if (el.classList.contains('click-shield')) {
+                target = el.previousElementSibling; // The iframe
+            } else {
+                target = el; // The image or the iframe itself (when clicked while zoomed)
+            }
 
             if (target.classList.contains('fullscreen')) {
+                // ZOOM OUT
                 target.classList.remove('fullscreen');
                 document.body.classList.remove('no-scroll');
-            } else {
-                // Close any other open fullscreens first
+            } else if (!el.classList.contains('expandable-iframe')) {
+                // ZOOM IN (Only if clicking shield or image, not the small iframe directly)
                 document.querySelectorAll('.fullscreen').forEach(openItem => {
                     openItem.classList.remove('fullscreen');
                 });
