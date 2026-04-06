@@ -318,25 +318,22 @@ body {
     background: rgba(255,255,255,0); /* Invisible but clickable */
 }
 
-/* FIXED FULLSCREEN STATE */
+/* FULLSCREEN STATE */
 .expandable-image.fullscreen,
 .expandable-iframe.fullscreen {
     position: fixed !important;
-    top: 50% !important;
-    left: 50% !important;
-    width: 90vw !important; /* Use 90% of viewport width */
-    height: 90vh !important; /* Use 90% of viewport height */
-    
-    /* This overrides the previous transform and centers it perfectly */
-    transform: translate(-50%, -50%) scale(1) !important; 
-    
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    transform: none !important; /* Reset transform for true fullscreen */
     z-index: 9999;
-    background: white; /* Ensures no transparency behind charts */
-    padding: 10px;
+    background: white;
+    padding: 20px;
     cursor: zoom-out;
     object-fit: contain;
-    box-shadow: 0 0 100px rgba(0,0,0,0.9);
-    border-radius: 8px;
+   box-shadow: 0 10px 50px rgba(0,0,0,0.8);
+    border-radius: 12px;
 }
 
 /* Hide shield when zoomed so user can interact with the map */
