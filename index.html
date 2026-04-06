@@ -202,7 +202,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================================
     // 3. UNIFIED ZOOM (IMAGES & IFRAMES)
     // =========================================
-    // We target images, the shield, AND the iframe itself for zooming out
+    
+    // We target images, the shield, AND the iframe itself
     const interactiveElements = document.querySelectorAll('.expandable-image, .click-shield, .expandable-iframe');
 
     interactiveElements.forEach(el => {
@@ -210,18 +211,23 @@ document.addEventListener('DOMContentLoaded', () => {
             e.stopPropagation();
             
             let target;
+            
+            // Determine what we are trying to toggle
             if (el.classList.contains('click-shield')) {
-                target = el.previousElementSibling; // The iframe
+                target = el.previousElementSibling; // Target the iframe
             } else {
-                target = el; // The image or the iframe itself (when clicked while zoomed)
+                target = el; // Target the image or the iframe itself
             }
 
             if (target.classList.contains('fullscreen')) {
-                // ZOOM OUT
+                // ZOOM OUT logic
                 target.classList.remove('fullscreen');
                 document.body.classList.remove('no-scroll');
-            } else if (!el.classList.contains('expandable-iframe')) {
-                // ZOOM IN (Only if clicking shield or image, not the small iframe directly)
+            } else {
+                // ZOOM IN logic (prevent small iframes from triggering zoom-in twice)
+                if (el.classList.contains('expandable-iframe')) return;
+
+                // Close any other open fullscreens first
                 document.querySelectorAll('.fullscreen').forEach(openItem => {
                     openItem.classList.remove('fullscreen');
                 });
@@ -232,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Close when clicking anywhere on the background
+    // Close when clicking anywhere on the background (dark area)
     document.addEventListener('click', () => {
         document.querySelectorAll('.fullscreen').forEach(el => {
             el.classList.remove('fullscreen');
