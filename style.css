@@ -293,7 +293,7 @@ body {
     left: 50%;
     transform-origin: center center;
 }
-.chart-placeholder iframe #chart2{
+.chart-placeholder iframe#chart2{
     width: 160% !important;  
     height: 160% !important; 
     border: none;
