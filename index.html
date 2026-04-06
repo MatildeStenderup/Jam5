@@ -314,9 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.story-container');
     const stops = document.querySelectorAll('.stop');
 
-    // ========================
     // 1. ALIGN STOPS WITH TITLES
-    // ========================
     const alignStopsWithTitles = () => {
         const steps = ['#step1', '#step2', '#step3'];
         steps.forEach((stepId, index) => {
@@ -327,7 +325,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!title) return;
                 const containerRect = container.getBoundingClientRect();
                 const titleRect = title.getBoundingClientRect();
-                const relativeTop = (titleRect.top + window.scrollY) - (containerRect.top + window.scrollY);
+                const relativeTop = titleRect.top - containerRect.top;
                 stop.style.top = `${relativeTop + (title.offsetHeight / 2)}px`;
             }
         });
@@ -338,9 +336,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('resize', alignStopsWithTitles);
     }
 
-    // ========================
     // 2. SCROLL LINE LOGIC
-    // ========================
     window.addEventListener('scroll', () => {
         if (!container || !lineFill) return;
         const containerOffset = container.offsetTop;
@@ -360,15 +356,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ========================
-    // 3. UNIVERSAL ZOOM LOGIC
-    // ========================
+    // 3. THE ZOOM ENGINE
+    // This function handles the actual expanding/shrinking
     const toggleZoom = (element) => {
         if (element.classList.contains('fullscreen-active')) {
             element.classList.remove('fullscreen-active');
             document.body.classList.remove('no-scroll');
         } else {
-            // Close any other open zooms first
+            // Close any existing zoomed items first
             document.querySelectorAll('.fullscreen-active').forEach(el => {
                 el.classList.remove('fullscreen-active');
             });
@@ -377,20 +372,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Handle Iframes (via Click Shield)
+    // LISTEN FOR CLICKS ON SHIELDS (For iframes)
     document.querySelectorAll('.click-shield').forEach(shield => {
         shield.addEventListener('click', (e) => {
+            e.stopPropagation();
+            // Find the iframe that is a sibling of this shield
             const iframe = shield.parentElement.querySelector('iframe');
-            if (iframe) toggleZoom(iframe);
+            if (iframe) {
+                toggleZoom(iframe);
+            }
         });
     });
 
-    // Handle Images
+    // LISTEN FOR CLICKS ON IMAGES
     document.querySelectorAll('.expandable-image').forEach(img => {
-        img.addEventListener('click', () => toggleZoom(img));
+        img.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleZoom(img);
+        });
     });
 
-    // Close on Escape key
+    // CLOSE ON ESCAPE KEY
     document.addEventListener('keydown', (e) => {
         if (e.key === "Escape") {
             document.querySelectorAll('.fullscreen-active').forEach(el => {
@@ -400,11 +402,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Close when clicking background of a zoomed image
+    // CLOSE WHEN CLICKING THE BACKGROUND (The zoomed item itself)
     document.addEventListener('click', (e) => {
         if (e.target.classList.contains('fullscreen-active')) {
-            e.target.classList.remove('fullscreen-active');
-            document.body.classList.remove('no-scroll');
+            toggleZoom(e.target);
         }
     });
 });
