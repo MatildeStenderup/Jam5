@@ -1,405 +1,799 @@
 /* =========================================
+
    1. General Reset & Base Styles
+
    ========================================= */
+
 * {
+
     margin: 0;
+
     padding: 0;
+
     box-sizing: border-box;
+
 }
+
+
 
 body {
+
     font-family: 'Inter', sans-serif;
+
     line-height: 1.6;
+
     color: #ffffff;
+
     background-color: #333333;
+
     overflow-x: hidden;
+
 }
 
+
+
 /* =========================================
+
    2. Hero Section
+
    ========================================= */
+
 .hero {
+
     height: 100vh;
+
     width: 100%;
+
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+
                 url('./images/Bridge.jpg') no-repeat center center;
+
     background-size: cover;
+
     background-attachment: fixed;
+
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
+
     justify-content: center;
+
     text-align: center;
+
     color: white;
+
     padding: 0 20px;
+
 }
+
+
 
 .hero-content h1 {
+
     font-size: clamp(2.5rem, 5vw, 4.5rem);
+
     font-weight: 800;
+
     line-height: 1.1;
+
     margin-bottom: 20px;
+
     text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+
 }
+
+
 
 .scroll-indicator {
+
     margin-top: 2rem;
+
     font-weight: bold;
+
     animation: bounce 2s infinite;
+
 }
 
+
+
 /* =========================================
+
    3. Story Container & Vertical Tracker
+
    ========================================= */
+
 .story-container {
+
     max-width: 1200px;
+
     margin: 0 auto;
+
     padding: 40px 20px;
+
     position: relative;
+
 }
+
+
 
 .line-container {
+
     position: absolute;
+
     right: 0px;
+
     left: auto;
+
     top: 0;
+
     bottom: 0;
+
     width: 4px;
+
     z-index: 100;
+
     pointer-events: none;
+
 }
+
+
 
 .line-track {
+
     position: absolute;
+
     top: 0;
+
     bottom: 0;
+
     width: 2px;
+
     background: repeating-linear-gradient(
+
         to bottom,
+
         #ddd,
+
         #ddd 10px,
+
         transparent 10px,
+
         transparent 20px
+
     );
+
     right: 1px;
+
 }
+
+
 
 .line-fill {
+
     position: absolute;
+
     top: 0;
+
     right: 0;
+
     width: 4px;
+
     height: 0%;
+
     background: #FF0000;
+
     transition: height 0.1s ease-out;
+
 }
+
+
 
 .stop {
+
     position: absolute;
+
     right: -6px;
+
     width: 16px;
+
     height: 16px;
+
     background-color: #333;
+
     border: 3px solid #ddd;
+
     border-radius: 50%;
+
     z-index: 101;
+
     transition: all 0.3s ease;
+
 }
+
+
 
 .stop-1 { top: calc(18% + 25vh); }
+
 .stop-2 { top: calc(47% + 25vh); }
+
 .stop-3 { top: calc(77% + 25vh); }
 
+
+
 .stop.active {
+
     border-color: #ddd;
+
     background-color: #FF0000;
+
     animation: pulseStop 2s infinite;
+
 }
 
+
+
 /* =========================================
+
    4. Step Sections (Content & Visuals)
+
    ========================================= */
+
 .step {
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: flex-start;
+
     min-height: 100vh;
+
     position: relative;
+
 }
+
+
 
 @media (min-width: 769px) {
+
     .step:nth-of-type(even) {
+
         flex-direction: row-reverse;
+
     }
+
 }
+
+
 
 .text-block {
+
     flex: 0 0 40%;
+
     padding-top: 25vh;
+
 }
+
+
 
 .text-block h2 {
+
     font-size: 2.5rem;
+
     margin-bottom: 1.5rem;
+
 }
+
+
 
 .visual-block {
+
     flex: 0 0 55%;
+
     position: sticky;
+
     top: 20vh;
+
     height: 60vh;
+
     background: white;
+
     border-radius: 12px;
+
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+
     overflow: hidden;
+
 }
 
+
+
 .chart-placeholder {
+
     width: 100%;
+
     height: 100%;
+
     position: relative; /* CRITICAL: Contains the absolute image */
+
     display: flex;
+
     justify-content: center;
+
     align-items: center;
+
 }
+
+
 
 /* IMAGE FIX: Absolute positioning prevents it from breaking layout */
+
 .expandable-image {
+
     position: absolute;
+
     top: 0;
+
     left: 0;
+
     width: 100%;
+
     height: 100%;
+
     object-fit: contain; 
+
     cursor: zoom-in;
+
     transition: transform 0.3s ease;
+
     padding: 10px; /* Slight padding inside the white box */
+
 }
+
+
 
 /* FULLSCREEN STATE */
+
 .expandable-image.fullscreen {
+
     position: fixed;
+
     top: 0;
+
     left: 0;
+
     width: 100vw;
+
     height: 100vh;
+
     object-fit: contain;
+
     z-index: 9999;
+
     cursor: zoom-out;
+
     background: rgba(0, 0, 0, 0.9);
+
     padding: 40px;
+
 }
 
+
+
 /* =========================================
+
    5. Mid-Page Full Width Textbox
+
    ========================================= */
+
 .mid-page-text {
+
     width: 100%;
+
     margin: 40px 0 80px 0;
+
     position: relative;
+
     z-index: 5;
+
 }
+
+
 
 .inner-box {
+
     background-color: #333;
+
     color: white;
+
     padding: 60px 40px;
+
     border-radius: 12px;
+
 }
 
+
+
 /* =========================================
+
    6. Footer & Animations
+
    ========================================= */
+
 .outro {
+
     height: 60vh;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     text-align: center;
+
     padding: 0 10%;
+
 }
+
+
 
 @keyframes bounce {
+
     0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+
     40% {transform: translateY(-10px);}
+
     60% {transform: translateY(-5px);}
+
 }
+
+
 
 @keyframes pulseStop {
+
     0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4); }
+
     70% { transform: scale(1.2); box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
+
     100% { transform: scale(1); }
+
 }
+
+
 
 /* =========================================
+
    7. Mobile Responsive
+
    ========================================= */
+
 @media (max-width: 768px) {
+
     .line-container { display: none; }
+
     .step { flex-direction: column !important; min-height: auto; margin-bottom: 50px; }
+
     .text-block { flex: 0 0 100%; padding-top: 20px; }
+
     .visual-block { flex: 0 0 100%; position: relative; top: 0; height: 350px; width: 100%; }
+
 }
+
 .expandable-image {
+
     cursor: zoom-in;
+
    /*transition: all 0.3s ease;  Smooth transition */
+
    transition: none !important;
+
 }
+
+
 
 .expandable-image.fullscreen {
+
     position: fixed;
+
     top: 50%;
+
     left: 50%;
+
     transform: translate(-50%, -50%);
+
     max-width: 90vw;
+
     max-height: 90vh;
+
     z-index: 9999;
+
     cursor: zoom-out;
+
     box-shadow: 0 5px 30px rgba(0,0,0,0.5);
+
    transition: none !important;
+
 }
+
+
+
+
 
 
 
 .chart-placeholder iframe {
+
     width: 160% !important;  
+
     height: 160% !important; 
+
     border: none;
+
     display: block;
+
     
+
     position: absolute;
+
     /* translate(X, Y) */
+
     transform: translate(-41.5%, -49%) scale(0.82); 
+
     
+
     top: 50%;
+
     left: 50%;
+
     transform-origin: center center;
+
 }
 
+
+
 .chart-placeholder {
+
    width: 100%;
+
    height: 100%; 
+
    position: relative;
+
    overflow: hidden; 
+
    background: #fff;
+
 }
+
+
 
 /* This rule in your CSS currently targets ALL iframes inside chart-placeholders */
+
 .chart-placeholder iframe {
+
     width: 160% !important;  
+
     height: 160% !important; 
+
     border: none;
+
     display: block;
+
     
+
     position: absolute;
+
     /* This centers the oversized iframe and scales it down */
+
     top: 50%;
+
     left: 50%;
+
     transform: translate(-50%, -50%) scale(0.6); /* Adjust scale as needed */
+
     transform-origin: center center;
+
 }
+
 /* The 'Zoomed' state for the iframe */
+
 .expandable-iframe.fullscreen {
+
     position: fixed !important;
+
     top: 0 !important;
+
     left: 0 !important;
+
     width: 100vw !important;
+
     height: 100vh !important;
+
     transform: none !important; /* Remove the scaling/centering from the placeholder */
+
     z-index: 9999;
+
     background: white;
+
     padding: 20px;
+
 }
+
+
 
 /* Add a helper class to the body to prevent scrolling when zoomed */
+
 body.no-scroll {
+
     overflow: hidden;
+
 }
-hr {
-    margin-top: 20px;    /* Space above the line */
-    margin-bottom: 40px; /* Space below the line - adjust this number to your liking */
-    border: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Makes the line a subtle white */
-}
+
+
+
+
 
 /* This invisible layer sits on top of the map */
+
 .click-shield {
+
     position: absolute;
+
     top: 0;
+
     left: 0;
+
     width: 100%;
+
     height: 100%;
+
     z-index: 10; /* Sits above the iframe */
+
     cursor: zoom-in;
+
 }
+
+
 
 /* When the iframe is fullscreen, hide the shield so we can use the map */
+
 .expandable-iframe.fullscreen + .click-shield, 
+
 .fullscreen ~ .click-shield {
+
     display: none;
+
 }
+
+
 
 /* Ensure the iframe behaves exactly like the image when fullscreen */
+
 .expandable-iframe.fullscreen {
+
     position: fixed !important;
+
     top: 50% !important;
+
     left: 50% !important;
+
     transform: translate(-50%, -50%) !important;
+
     width: 90vw !important;
+
     height: 80vh !important;
+
     z-index: 9999;
+
     background: white;
+
     box-shadow: 0 5px 30px rgba(0,0,0,0.5);
+
     border-radius: 8px;
+
 }
+
 /* 1. Ensure the container is the reference point */
+
 .chart-placeholder {
+
     width: 100%;
+
     height: 100%;
+
     position: relative;
+
     overflow: hidden;
+
     background: #fff;
+
     display: flex;
+
     justify-content: center;
+
     align-items: center;
+
 }
+
+
 
 /* 2. Make the iframe fill the box exactly */
+
 .expandable-iframe {
+
     width: 100% !important;
+
     height: 100% !important;
+
     border: none;
+
     transition: all 0.3s ease;
+
 }
+
+
 
 /* 3. The Click Shield - crucial for intercepting clicks over an iframe */
+
 .click-shield {
+
     position: absolute;
+
     top: 0;
+
     left: 0;
+
     width: 100%;
+
     height: 100%;
+
     z-index: 5;
+
     cursor: zoom-in;
+
 }
+
+
 
 /* 4. Fullscreen State for both Image and Iframe */
+
 .expandable-image.fullscreen,
+
 .expandable-iframe.fullscreen {
+
     position: fixed !important;
+
     top: 50% !important;
+
     left: 50% !important;
+
     transform: translate(-50%, -50%) !important;
+
     width: 90vw !important;
+
     height: 85vh !important;
+
     z-index: 9999;
+
     background: white;
+
     box-shadow: 0 10px 50px rgba(0,0,0,0.8);
+
     border-radius: 12px;
+
     cursor: zoom-out;
+
 }
 
+
+
 /* Hide the shield when zoomed so you can actually interact with the map */
+
 .expandable-iframe.fullscreen + .click-shield {
+
     display: none;
+
 }
