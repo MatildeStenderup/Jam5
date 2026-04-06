@@ -6,262 +6,140 @@
     <title>"The Shifting Border: Did San Francisco Fix Crime or Just Move It?"</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-
 </head>
 
 <body>
     <header class="hero">
         <div class="hero-content">
-            <h1>The Shifting Border: Did San Francisco Fix Crime or Just Move It? <br></h1>
+            <h1>The Shifting Border: Did San Francisco Fix Crime or Just Move It?</h1>
             <p>A data-driven exploration of crime patterns in San Francisco from 2003 to 2023.</p>
             <div class="scroll-indicator">↓ Scroll to explore</div>
         </div>
     </header>
 
-<main class="story-container">
-     <div class="line-container">
-        <div class="line-track"></div> <div id="line-fill" class="line-fill"></div> <div class="stop stop-1"></div>
-        <div class="stop stop-2"></div>
-        <div class="stop stop-3"></div>
-    </div>
-
-    <div class="mid-page-text">
-        <div class="inner-box">
-            <h2>The Data Behind the Shift</h2>
-            <p>
-When we look at San Francisco over the last twenty years, we often talk about the skyscrapers and the tech companies that 
-                redefined the skyline. But as we dug into two decades of police data—over 2.5 million individual records—we 
-                found a different story. It isn't just a story of crime going up or down; it’s a story of crime moving. <br><br>
-
-<b>A Tale of Two Eras</b><br>
-Imagine walking through San Francisco in 2003. You’d see the gritty industrial warehouses of the neighborhood SoMa and the affordable, 
-                lived-in blocks of the Mission. Now, fast-forward to 2023. Those same streets are now dominated by the Salesforce Tower,
-                high-end boutiques, and artisanal cafes. <br><br>
-
-As the city grew wealthier and more crowded, the "footprint" of where things happen changed. Our analysis shows that while some 
-                neighborhoods seem quieter than they were twenty years ago, the energy hasn't disappeared. It has been squeezed, 
-                pushed along the edges of the city, and concentrated into new hubs. We aren't necessarily looking at a "safer" map; 
-                we are looking at a map where the borders of the city's problems have been shifted.
-</p>
+    <main class="story-container">
+        <div class="line-container">
+            <div class="line-track"></div> 
+            <div id="line-fill" class="line-fill"></div> 
+            <div class="stop stop-1"></div>
+            <div class="stop stop-2"></div>
+            <div class="stop stop-3"></div>
         </div>
-    </div>
 
-    <section class="step" id="step1">
-        <div class="text-block">
-            <h2>The Migrating Map: Tracking San Francisco’s Shifting Landscape</h2>
-            <p><b>The Plot Analysis</b> <br>
-When we look at these two plots together, the data tells a story of a city that has effectively "squeezed" its challenges into a 
-                smaller territory. <br> <br>
-
-On the left, the boxplot shows that the extreme high-volume years of 2003 are gone; the citywide average has dropped. 
-                But the radar chart on the right shows that this "improvement" wasn't shared by everyone. In 2003, the Mission was the 
-                clear peak of the map. By 2023, the Mission and Southern districts—the two areas most transformed by the tech-driven 
-                real estate boom—have seen their incident volumes recede significantly. <br><br>
-
-The most striking part of the data is where the map expands. The Central and Tenderloin districts stand out as the only two neighborhoods
-                where the orange 2023 line pushes past the 2003 era. As the "tech boom" redefined the blocks around them, the 
-                Tenderloin and Central sectors became the new epicenters. We aren't looking at a city where crime is simply disappearing; 
-                we are looking at a city where the problems have been pushed inward, creating a more intense concentration in the city's 
-                commercial heart. <br><br>
-
-<b>Moving Beyond the Map</b> <br>
-But knowing where the incidents have concentrated is only the first layer. If the Central and Tenderloin districts are the only ones
-                seeing an increase, we have to ask: What is happening there? <br> Is this increase driven by the same types of incidents we
-                saw twenty years ago, or has the "flavor" of the city's problems evolved? To understand the reality behind the "Tech Boom"
-                era, we need to break these shapes down into the specific categories of these incidents. <br><br>
-                
-        </div>
-        <div class="visual-block">
-            <div class="chart-placeholder">
-<img src="images/crime_comparison.png" alt="Shift Overview" class="expandable-image">
-                <div id="chart1"></div>
+        <div class="mid-page-text">
+            <div class="inner-box">
+                <h2>The Data Behind the Shift</h2>
+                <p>
+                    When we look at San Francisco over the last twenty years, we found a different story. 
+                    It isn't just a story of crime going up or down; it’s a story of crime moving.
+                </p>
             </div>
         </div>
-    </section>
 
-    <section class="step" id="step2">
-        <div class="text-block">
-            <h2>Two Decades of Shifting Incidents and Social Isolation</h2>
-            <p><b>The Choropleth maps with Plotly Analysis</b> <br>
-            <p>The interactive maps beside display each district’s share of citywide incidents. 
-                If you hovering over the map, you can see the top three incident types that dominated
-                these areas in 2003 versus 2023. When we have a closer look, we see that the "flavor" 
-                of San Francisco’s districts conditions didn't just move it also transformed a bit.<br><br>
-            
-            As we noted above, the crimes of Central district has grown bigger. 
-            In 2003, Central saw a significant number of larceny and theft cases (around 3,400). 
-            Fast forward to 2023, and that number hasn't just grown, it has exploded. 
-            Larceny and theft increase to over 7,700 incidents, now dominating the district’s data. 
-            This suggests that as the city’s centrum grew more affluent, it became a massive magnet for property crime.<br><br>
-
-            Meanwhile Tenderloin tells a sad consistency. In both 2003 and 2023, the primary driver of police activity remained the same, drug and narcotic offenses. 
-            However, a troubling new crime type have emerged in the top three for 2023, Assault. As the surrounding neighborhoods were reshaped 
-            by affluent, tourism and the tech boom, Tenderloin became more socially isolated. The data shows that rather than being "cleaned up", 
-            the city's substance abuse and safety challenges have been concentrated into this small sector, turning it into a "dumping ground" where 
-            social problems are pushed and held.<br><br>
-
-            The news is different for the Southern and Mission districts.Which once where hubs for larceny/theft and other offenses in 2003, 
-            their crime shares have plummeted especially Southern district. The arrival of tech headquarters, nice restaurants and a shifting demographic
-            has effectively displaced the older patterns of crime.<br><br>
-
-            Looking at these twenty years of data, the patterns reveal an interesting shift in crime types across the city. San Francisco hasn't solved 
-            its problems, it has categorized them. Property crimes have flooded the tourist and retail zones of the Northern and Central districts, while
-            drug and behavioral crises have been locked firmly into Tenderloin.<br><br>
-
-        </div>
-        <div class="visual-block">               
-    <div class="chart-placeholder">
-        <iframe src="map_comparison (15).html" class="expandable-iframe" scrolling="no"></iframe>
-        <div id="chart2"></div>
-    </div>
-</div>
-        
-    </section>
-
-    <section class="step" id="step3">
-        <div class="text-block">
-            <h2>A New Frontier</h2>
-            <p>Data suggests crime hasn't vanished, it has simply migrated.</p>
-        </div>
-        <div class="visual-block">
-            <div class="chart-placeholder">
-                <div id="chart3"></div>
+        <section class="step" id="step1">
+            <div class="text-block">
+                <h2>The Migrating Map</h2>
+                <p>The Central and Tenderloin districts stand out as the only two neighborhoods where the 2023 data pushes past the 2003 era.</p>
             </div>
-        </div>
-    </section>
-</main>
+            <div class="visual-block">
+                <div class="chart-placeholder">
+                    <img src="images/crime_comparison.png" alt="Shift Overview" class="expandable-image">
+                </div>
+            </div>
+        </section>
+
+        <section class="step" id="step2">
+            <div class="text-block">
+                <h2>Two Decades of Shifting Incidents</h2>
+                <p>The interactive maps display each district’s share of citywide incidents. Hover to see the top incident types.</p>
+            </div>
+            <div class="visual-block">                
+                <div class="chart-placeholder">
+                    <iframe src="map_comparison (15).html" class="expandable-iframe" scrolling="no"></iframe>
+                    <div class="click-shield"></div> </div>
+            </div>
+        </section>
+
+        <section class="step" id="step3">
+            <div class="text-block">
+                <h2>A New Frontier</h2>
+                <p>Data suggests crime hasn't vanished, it has simply migrated.</p>
+            </div>
+            <div class="visual-block">
+                <div class="chart-placeholder">
+                    <div id="chart3"></div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer class="outro">
         <div class="outro-content">
             <h2>The story continues</h2>
-            <p>While the data shows encouraging trends in crime reduction, the work is far from over. Communities, law enforcement, and policymakers must continue collaborating to ensure San Francisco remains safe for all residents.</p><br><br>
-            <hr>
-            <p class="source">Data source: San Francisco Police Department Crime Database<br>Image source: https://unsplash.com/<br>Last updated: March 2026</p>
+            <p>Data source: San Francisco Police Department Crime Database</p>
+            <p class="source">Last updated: March 2026</p>
         </div>
     </footer>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
 
-    const lineFill = document.getElementById('line-fill');
-    const container = document.querySelector('.story-container');
-    const stops = document.querySelectorAll('.stop');
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lineFill = document.getElementById('line-fill');
+            const container = document.querySelector('.story-container');
+            const stops = document.querySelectorAll('.stop');
 
-    // ========================
-    // ALIGN STOPS
-    // ========================
-    const alignStopsWithTitles = () => {
-        const steps = ['#step1', '#step2', '#step3'];
+            // Scroll Line Logic
+            window.addEventListener('scroll', () => {
+                if (!container || !lineFill) return;
+                const containerOffset = container.offsetTop;
+                const containerHeight = container.offsetHeight;
+                const scrollPosition = window.scrollY - containerOffset + (window.innerHeight / 2);
+                let scrollPercent = (scrollPosition / containerHeight) * 100;
+                scrollPercent = Math.max(0, Math.min(scrollPercent, 100));
+                lineFill.style.height = scrollPercent + "%";
 
-        steps.forEach((stepId, index) => {
-            const stepElement = document.querySelector(stepId);
-            const stop = document.querySelector(`.stop-${index + 1}`);
-
-            // Safety check: only proceed if these elements actually exist!
-            if (stepElement && stop) {
-                const title = stepElement.querySelector('h2');
-                if (!title) return;
-
-                const containerRect = container.getBoundingClientRect();
-                const titleRect = title.getBoundingClientRect();
-                const relativeTop = titleRect.top - containerRect.top;
-
-                stop.style.top = `${relativeTop + (title.offsetHeight / 2)}px`;
-            }
-        });
-    };
-
-    // Only run alignment if container exists
-    if (container) {
-        alignStopsWithTitles();
-        window.addEventListener('resize', alignStopsWithTitles);
-    }
-
-    // ========================
-    // SCROLL LINE LOGIC
-    // ========================
-    window.addEventListener('scroll', () => {
-        // Safety check to prevent crashes
-        if (!container || !lineFill) return;
-
-        const containerOffset = container.offsetTop;
-        const containerHeight = container.offsetHeight;
-        const scrollPosition = window.scrollY - containerOffset + (window.innerHeight / 2);
-
-        let scrollPercent = (scrollPosition / containerHeight) * 100;
-        scrollPercent = Math.max(0, Math.min(scrollPercent, 100));
-
-        lineFill.style.height = scrollPercent + "%";
-
-        stops.forEach(stop => {
-            const stopPercent = (stop.offsetTop / containerHeight) * 100;
-
-            if (scrollPercent >= stopPercent) {
-                stop.classList.add('active');
-            } else {
-                stop.classList.remove('active');
-            }
-        });
-    });
-
-    // ========================
-    // IMAGE ZOOM FEATURE
-    // ========================
-    const images = document.querySelectorAll('.expandable-image');
-
-    images.forEach(img => {
-        img.addEventListener('click', (e) => {
-            e.stopPropagation(); // Stop click from reaching the document
-            
-            if (img.classList.contains('fullscreen')) {
-                img.classList.remove('fullscreen');
-            } else {
-                // Shrink any OTHER images that might be open first...
-                document.querySelectorAll('.expandable-image.fullscreen').forEach(openImg => {
-                    openImg.classList.remove('fullscreen');
+                stops.forEach(stop => {
+                    const stopPercent = (stop.offsetTop / containerHeight) * 100;
+                    if (scrollPercent >= stopPercent) stop.classList.add('active');
+                    else stop.classList.remove('active');
                 });
-                // ...and expand this one!
-                img.classList.add('fullscreen');
-            }
-        });
-    });
-
-    // Close the image when clicking anywhere on the background
-    document.addEventListener('click', () => {
-        document.querySelectorAll('.expandable-image.fullscreen').forEach(img => {
-            img.classList.remove('fullscreen');
-        });
-    });
-
-});
-    document.addEventListener('DOMContentLoaded', () => {
-    const iframes = document.querySelectorAll('.expandable-iframe');
-
-    iframes.forEach(iframe => {
-        // We wrap the click logic. Note: clicking INSIDE an iframe 
-        // won't always trigger this, so a double-click or a 
-        // button is usually more reliable.
-        iframe.parentElement.addEventListener('click', () => {
-            if (iframe.classList.contains('fullscreen')) {
-                iframe.classList.remove('fullscreen');
-                document.body.classList.remove('no-scroll');
-            } else {
-                iframe.classList.add('fullscreen');
-                document.body.classList.add('no-scroll');
-            }
-        });
-    });
-
-    // Close on Escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === "Escape") {
-            document.querySelectorAll('.expandable-iframe.fullscreen').forEach(el => {
-                el.classList.remove('fullscreen');
-                document.body.classList.remove('no-scroll');
             });
-        }
-    });
-});
-</script>
-</body>
 
+            // Expand Image Logic
+            document.querySelectorAll('.expandable-image').forEach(img => {
+                img.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    img.classList.toggle('fullscreen');
+                });
+            });
+
+            // Expand Iframe via Shield Logic
+            document.querySelectorAll('.click-shield').forEach(shield => {
+                shield.addEventListener('click', () => {
+                    const iframe = shield.previousElementSibling;
+                    iframe.classList.add('fullscreen');
+                    document.body.classList.add('no-scroll');
+                });
+            });
+
+            // Close everything on background click or Escape
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.expandable-image') && !e.target.closest('.click-shield')) {
+                    document.querySelectorAll('.fullscreen').forEach(el => {
+                        el.classList.remove('fullscreen');
+                    });
+                    document.body.classList.remove('no-scroll');
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === "Escape") {
+                    document.querySelectorAll('.fullscreen').forEach(el => {
+                        el.classList.remove('fullscreen');
+                    });
+                    document.body.classList.remove('no-scroll');
+                }
+            });
+        });
+    </script>
+</body>
 </html>
