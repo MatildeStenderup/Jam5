@@ -112,6 +112,7 @@ But knowing where the incidents have concentrated is only the first layer. If th
         <div class="visual-block">               
     <div class="chart-placeholder">
         <iframe src="map_comparison (15).html" class="expandable-iframe" scrolling="no"></iframe>
+        <div class="click-shield"></div>
         <div id="chart2"></div>
     </div>
 </div>
@@ -141,14 +142,13 @@ But knowing where the incidents have concentrated is only the first layer. If th
     </footer>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-
     const lineFill = document.getElementById('line-fill');
     const container = document.querySelector('.story-container');
     const stops = document.querySelectorAll('.stop');
 
-    // ========================
-    // ALIGN STOPS
-    // ========================
+    // =========================================
+    // 1. ALIGN STOPS WITH TITLES
+    // =========================================
     const alignStopsWithTitles = () => {
         const steps = ['#step1', '#step2', '#step3'];
 
@@ -156,31 +156,28 @@ document.addEventListener('DOMContentLoaded', () => {
             const stepElement = document.querySelector(stepId);
             const stop = document.querySelector(`.stop-${index + 1}`);
 
-            // Safety check: only proceed if these elements actually exist!
             if (stepElement && stop) {
                 const title = stepElement.querySelector('h2');
                 if (!title) return;
 
                 const containerRect = container.getBoundingClientRect();
                 const titleRect = title.getBoundingClientRect();
-                const relativeTop = titleRect.top - containerRect.top;
+                const relativeTop = (titleRect.top + window.scrollY) - (containerRect.top + window.scrollY);
 
                 stop.style.top = `${relativeTop + (title.offsetHeight / 2)}px`;
             }
         });
     };
 
-    // Only run alignment if container exists
     if (container) {
         alignStopsWithTitles();
         window.addEventListener('resize', alignStopsWithTitles);
     }
 
-    // ========================
-    // SCROLL LINE LOGIC
-    // ========================
+    // =========================================
+    // 2. SCROLL LINE & ACTIVE STOP LOGIC
+    // =========================================
     window.addEventListener('scroll', () => {
-        // Safety check to prevent crashes
         if (!container || !lineFill) return;
 
         const containerOffset = container.offsetTop;
@@ -194,7 +191,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         stops.forEach(stop => {
             const stopPercent = (stop.offsetTop / containerHeight) * 100;
-
             if (scrollPercent >= stopPercent) {
                 stop.classList.add('active');
             } else {
@@ -203,58 +199,48 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ========================
-    // IMAGE ZOOM FEATURE
-    // ========================
-    const images = document.querySelectorAll('.expandable-image');
+    // =========================================
+    // 3. UNIFIED ZOOM (IMAGES & IFRAMES)
+    // =========================================
+    
+    // This looks for images OR the click-shield over your iframe
+    const interactiveElements = document.querySelectorAll('.expandable-image, .click-shield');
 
-    images.forEach(img => {
-        img.addEventListener('click', (e) => {
-            e.stopPropagation(); // Stop click from reaching the document
+    interactiveElements.forEach(el => {
+        el.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent document click from firing
             
-            if (img.classList.contains('fullscreen')) {
-                img.classList.remove('fullscreen');
-            } else {
-                // Shrink any OTHER images that might be open first...
-                document.querySelectorAll('.expandable-image.fullscreen').forEach(openImg => {
-                    openImg.classList.remove('fullscreen');
-                });
-                // ...and expand this one!
-                img.classList.add('fullscreen');
-            }
-        });
-    });
+            // If we clicked the shield, the target is the iframe (the previous element)
+            // If we clicked an image, the target is the image itself
+            let target = el.classList.contains('click-shield') ? el.previousElementSibling : el;
 
-    // Close the image when clicking anywhere on the background
-    document.addEventListener('click', () => {
-        document.querySelectorAll('.expandable-image.fullscreen').forEach(img => {
-            img.classList.remove('fullscreen');
-        });
-    });
-
-});
-    document.addEventListener('DOMContentLoaded', () => {
-    const iframes = document.querySelectorAll('.expandable-iframe');
-
-    iframes.forEach(iframe => {
-        // We wrap the click logic. Note: clicking INSIDE an iframe 
-        // won't always trigger this, so a double-click or a 
-        // button is usually more reliable.
-        iframe.parentElement.addEventListener('click', () => {
-            if (iframe.classList.contains('fullscreen')) {
-                iframe.classList.remove('fullscreen');
+            if (target.classList.contains('fullscreen')) {
+                target.classList.remove('fullscreen');
                 document.body.classList.remove('no-scroll');
             } else {
-                iframe.classList.add('fullscreen');
+                // Close any other open fullscreens first
+                document.querySelectorAll('.fullscreen').forEach(openItem => {
+                    openItem.classList.remove('fullscreen');
+                });
+                
+                target.classList.add('fullscreen');
                 document.body.classList.add('no-scroll');
             }
+        });
+    });
+
+    // Close when clicking anywhere on the background
+    document.addEventListener('click', () => {
+        document.querySelectorAll('.fullscreen').forEach(el => {
+            el.classList.remove('fullscreen');
+            document.body.classList.remove('no-scroll');
         });
     });
 
     // Close on Escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === "Escape") {
-            document.querySelectorAll('.expandable-iframe.fullscreen').forEach(el => {
+            document.querySelectorAll('.fullscreen').forEach(el => {
                 el.classList.remove('fullscreen');
                 document.body.classList.remove('no-scroll');
             });
